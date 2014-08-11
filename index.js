@@ -72,4 +72,50 @@ Client.prototype.del = function (store, key, callback) {
   });
 };
 
+Client.prototype.keys = function (store, callback) {
+  request.get(this.host + '/data/' + store, {
+    auth: {
+      bearer: this.token
+    }
+  }, function (err, reply, body) {
+    if (err) {
+      return callback(err);
+    }
+
+    if (body === '') {
+      return callback();
+    }
+
+    try {
+      var returned = JSON.parse(body);
+      callback(null, returned);
+    } catch(err) {
+      callback('Unable to decode data from server');
+    }
+  });
+};
+
+Client.prototype.filter = function (store, key, value, callback) {
+  request.get(this.host + '/filter/' + store + '?key=' + key + '&value=' + value, {
+    auth: {
+      bearer: this.token
+    }
+  }, function (err, reply, body) {
+    if (err) {
+      return callback(err);
+    }
+
+    if (body === '') {
+      return callback();
+    }
+
+    try {
+      var returned = JSON.parse(body);
+      callback(null, returned);
+    } catch(err) {
+      callback('Unable to decode data from server');
+    }
+  });
+};
+
 exports = module.exports = Client;
