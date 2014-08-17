@@ -138,7 +138,10 @@ Client.prototype.all = function (store, callback) {
     for (var i = 0; i < parts.length; i++) {
       try {
         var returned = JSON.parse(parts[i]);
-        data.push(returned);
+        data.push({
+          key: returned.key,
+          value: JSON.parse(returned.value)
+        });
       } catch (err) {
       }
     }
