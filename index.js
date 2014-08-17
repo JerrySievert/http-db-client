@@ -22,7 +22,7 @@ Client.prototype.get = function (store, key, callback) {
     try {
       var returned = JSON.parse(body);
       callback(null, returned);
-    } catch(err) {
+    } catch (err) {
       callback('Unable to decode data from server');
     }
   });
@@ -115,6 +115,35 @@ Client.prototype.filter = function (store, key, value, callback) {
     } catch(err) {
       callback('Unable to decode data from server');
     }
+  });
+};
+
+Client.prototype.all = function (store, callback) {
+  request.get(this.host + '/all/' + store, {
+    auth: {
+      bearer: this.token
+    }
+  }, function (err, reply, body) {
+    if (err) {
+      return callback(err);
+    }
+
+    if (body === '') {
+      return callback();
+    }
+
+    var parts = body.split("\n");
+    var data = [ ];
+
+    for (var i = 0; i < parts.length; i++) {
+      try {
+        var returned = JSON.parse(parts[i]);
+        data.push(returned);
+      } catch (err) {
+      }
+    }
+
+    callback(null, data);
   });
 };
 
