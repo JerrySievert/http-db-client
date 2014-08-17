@@ -109,12 +109,21 @@ Client.prototype.filter = function (store, key, value, callback) {
       return callback();
     }
 
-    try {
-      var returned = JSON.parse(body);
-      callback(null, returned);
-    } catch(err) {
-      callback('Unable to decode data from server');
+    var parts = body.split("\n");
+    var data = [ ];
+
+    for (var i = 0; i < parts.length; i++) {
+      try {
+        var returned = JSON.parse(parts[i]);
+        data.push({
+          key: returned.key,
+          value: JSON.parse(returned.value)
+        });
+      } catch (err) {
+      }
     }
+
+    callback(null, data);
   });
 };
 
