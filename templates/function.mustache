@@ -1,0 +1,31 @@
+<a name="{{name}}"><h3>
+{{#moduleName}}{{moduleName}}.{{/moduleName}}{{#className}}{{className}}.{{/className}}{{name}}({{#paramsString}}{{paramsString}}{{/paramsString}}) {{#version}}{{version}}{{/version}}</h3></a>
+-----------------------------
+{{#description}}
+{{{description}}}
+
+{{/description}}
+{{#deprecated}}
+Deprecated: {{{deprecated}}}
+
+{{/deprecated}}
+{{#hasParams}}
+**Parameters**
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+{{/hasParams}}
+{{#params}}
+| **{{name}}** | {{#typesString}}_{{typesString}}_{{/typesString}} | {{#description}}{{{description}}}{{/description}} |
+{{/params}}
+{{#hasParams}}
+
+{{/hasParams}}
+
+{{#fires}}
+**Fires**: {{.}}
+
+{{/fires}}
+{{#returns}}
+**Returns**: {{#typesString}}{{typesString}}, {{/typesString}}{{#description}}{{{description}}}{{/description}}
+{{/returns}}
