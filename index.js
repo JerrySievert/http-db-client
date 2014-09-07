@@ -127,6 +127,32 @@ Client.prototype.filter = function (store, key, value, callback) {
   });
 };
 
+Client.prototype.query = function (store, search, callback) {
+  if (typeof search !== 'object') {
+    return callback('Unable to encode search query, it must be an Object');
+  }
+
+  var body = JSON.stringify(search);
+
+  request({
+    url: this.host + '/query/' + store,
+    auth: {
+      bearer: this.token
+    },
+    json: true,
+    method: 'POST',
+    body: body
+  }, function (err, reply, body) {
+    if (err) {
+      callback(err);
+    } else if (body.status !== 'ok') {
+      callback(body.status);
+    } else {
+      callback();
+    }
+  });
+};
+
 Client.prototype.all = function (store, callback) {
   request.get(this.host + '/all/' + store, {
     auth: {
