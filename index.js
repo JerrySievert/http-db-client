@@ -51,7 +51,7 @@ function Client (host, token) {
  * @param callback {Function} Callback function to execute
  */
 Client.prototype.get = function (store, key, callback) {
-  request.get(this.host + '/value/' + store + '/' + key, {
+  request.get(this.host + '/database/value/' + store + '/' + key, {
     auth: {
       bearer: this.token
     }
@@ -91,7 +91,7 @@ Client.prototype.put = function (store, key, value, callback) {
   var body = JSON.stringify(value);
 
   request({
-    url: this.host + '/value/' + store + '/' + key,
+    url: this.host + '/database/value/' + store + '/' + key,
     auth: {
       bearer: this.token
     },
@@ -119,7 +119,7 @@ Client.prototype.put = function (store, key, value, callback) {
  */
 Client.prototype.del = function (store, key, callback) {
   request({
-    url: this.host + '/value/' + store + '/' + key,
+    url: this.host + '/database/value/' + store + '/' + key,
     auth: {
       bearer: this.token
     },
@@ -145,7 +145,7 @@ Client.prototype.del = function (store, key, callback) {
  * @param callback {Function} Callback function to execute
  */
 Client.prototype.keys = function (store, callback) {
-  request.get(this.host + '/keys/' + store, {
+  request.get(this.host + '/database/keys/' + store, {
     auth: {
       bearer: this.token
     }
@@ -179,7 +179,7 @@ Client.prototype.keys = function (store, callback) {
  * @param callback {Function} Callback function to execute
  */
 Client.prototype.filter = function (store, key, value, callback) {
-  request.get(this.host + '/filter/' + store + '?key=' + key + '&value=' + value, {
+  request.get(this.host + '/database/filter/' + store + '?key=' + key + '&value=' + value, {
     auth: {
       bearer: this.token
     }
@@ -258,7 +258,7 @@ Client.prototype.query = function (store, search, callback) {
   var body = JSON.stringify(search);
 
   request({
-    url: this.host + '/query/' + store,
+    url: this.host + '/database/query/' + store,
     auth: {
       bearer: this.token
     },
@@ -286,7 +286,7 @@ Client.prototype.query = function (store, search, callback) {
  * @param callback {Function} Callback function to execute
  */
 Client.prototype.all = function (store, callback) {
-  request.get(this.host + '/all/' + store, {
+  request.get(this.host + '/database/all/' + store, {
     auth: {
       bearer: this.token
     }
