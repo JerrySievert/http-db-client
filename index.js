@@ -51,7 +51,7 @@ function Client (host, token) {
  * @param callback {Function} Callback function to execute
  */
 Client.prototype.get = function (store, key, callback) {
-  request.get(this.host + '/data/' + store + '/' + key, {
+  request.get(this.host + '/value/' + store + '/' + key, {
     auth: {
       bearer: this.token
     }
@@ -91,7 +91,7 @@ Client.prototype.put = function (store, key, value, callback) {
   var body = JSON.stringify(value);
 
   request({
-    url: this.host + '/data/' + store + '/' + key,
+    url: this.host + '/value/' + store + '/' + key,
     auth: {
       bearer: this.token
     },
@@ -119,7 +119,7 @@ Client.prototype.put = function (store, key, value, callback) {
  */
 Client.prototype.del = function (store, key, callback) {
   request({
-    url: this.host + '/data/' + store + '/' + key,
+    url: this.host + '/value/' + store + '/' + key,
     auth: {
       bearer: this.token
     },
@@ -145,7 +145,7 @@ Client.prototype.del = function (store, key, callback) {
  * @param callback {Function} Callback function to execute
  */
 Client.prototype.keys = function (store, callback) {
-  request.get(this.host + '/data/' + store, {
+  request.get(this.host + '/keys/' + store, {
     auth: {
       bearer: this.token
     }
