@@ -200,7 +200,7 @@ Client.prototype.filter = function (store, key, value, callback) {
         var returned = JSON.parse(parts[i]);
         data.push({
           key: returned.key,
-          value: JSON.parse(returned.value)
+          value: returned.value
         });
       } catch (err) {
       }
@@ -307,7 +307,7 @@ Client.prototype.all = function (store, callback) {
         var returned = JSON.parse(parts[i]);
         data.push({
           key: returned.key,
-          value: JSON.parse(returned.value)
+          value: returned.value
         });
       } catch (err) {
       }
