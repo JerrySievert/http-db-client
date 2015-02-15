@@ -1,6 +1,6 @@
 {
   "name": "http-db-client",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Client for http-db",
   "main": "index.js",
   "scripts": {

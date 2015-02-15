@@ -88,7 +88,7 @@ Client.prototype.put = function (store, key, value, callback) {
     return callback('Unable to encode value, it must be an Object');
   }
 
-  var body = JSON.stringify(value);
+  var body = value;
 
   request({
     url: this.host + '/database/value/' + store + '/' + key,
